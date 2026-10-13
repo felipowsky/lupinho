@@ -49,7 +49,7 @@ EMFLAGS += -DPLATFORM_WEB
 
 EMFLAGS += -s EXPORTED_FUNCTIONS='["_main", "_lupi_load_game", "_malloc", "_free"]'
 EMFLAGS += -s EXPORTED_RUNTIME_METHODS='["ccall", "FS"]'
-# EMFLAGS += -s EXIT_RUNTIME=1
+EMFLAGS += -s EXIT_RUNTIME=1
 
 # Optimization
 OPTIMIZATION = -O2
