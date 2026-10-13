@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <stdint.h>
 
+#if defined(PLATFORM_WEB)
+#include <emscripten/emscripten.h>
+#endif
+
 #include "ui.h"
 #include "font.h"
 #include "hardware_constraints.h"
@@ -238,7 +242,11 @@ void palset(int index, int rgb555) {
     if (index < HARDWARE_PALETTE_MIN_INDEX || index > HARDWARE_PALETTE_MAX_INDEX) {
         #if SIMULATE_HARDWARE_CONSTRAINTS
         fprintf(stderr, "Error in palset(): Invalid index %d (must be between %d and %d)\n", index, HARDWARE_PALETTE_MIN_INDEX, HARDWARE_PALETTE_MAX_INDEX);
+        #if defined(PLATFORM_WEB)
+        emscripten_force_exit(0);
+        #else
         exit(EXIT_FAILURE);
+        #endif
         #endif
         return;
     }
