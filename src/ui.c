@@ -243,8 +243,10 @@ void palset(int index, int rgb555) {
         #if SIMULATE_HARDWARE_CONSTRAINTS
         fprintf(stderr, "Error in palset(): Invalid index %d (must be between %d and %d)\n", index, HARDWARE_PALETTE_MIN_INDEX, HARDWARE_PALETTE_MAX_INDEX);
         #if defined(PLATFORM_WEB)
+        print("It is PLATFORM_WEB!\n");
         emscripten_force_exit(0);
         #else
+        print("It is something else!\n");
         exit(EXIT_FAILURE);
         #endif
         #endif
